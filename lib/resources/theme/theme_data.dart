@@ -141,6 +141,7 @@ ThemeData darkMode = ThemeData(
     modalBarrierColor: kWhite.withOpacity(0.15),
     elevation: 12,
   ),
+  timePickerTheme: darkTimePickerTheme,
 );
 
 final textStyle = TextStyle(fontFamily: kFontFamily);
@@ -152,4 +153,42 @@ final border = OutlineInputBorder(
 final borderDark = OutlineInputBorder(
   borderRadius: kBorderRadius,
   borderSide: BorderSide(color: greySubtitle, width: 1),
+);
+
+final darkTimePickerTheme = TimePickerThemeData(
+  backgroundColor: Colors.black, //
+  dialBackgroundColor: Colors.grey[800],
+  dialTextColor: Colors.white,
+  entryModeIconColor: Colors.white,
+  hourMinuteTextColor: MaterialStateColor.resolveWith((states) {
+    if (states.contains(MaterialState.selected)) {
+      return Colors.black;
+    }
+    return Colors.white;
+  }),
+  hourMinuteColor: MaterialStateColor.resolveWith((states) {
+    if (states.contains(MaterialState.selected)) {
+      return Colors.grey[300]!;
+    }
+    return Colors.grey[700]!;
+  }),
+  helpTextStyle: TextStyle(
+    color: Colors.grey[400],
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.grey[900],
+    hintStyle: TextStyle(
+      color: Colors.grey[400],
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: Colors.grey[700]!,
+      ),
+    ),
+  ),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(16),
+  ),
 );

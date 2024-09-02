@@ -111,7 +111,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             onPressed: _saveTask.withHaptic,
             style: TextButton.styleFrom(foregroundColor: cs.primary),
             child: AppText(
-              'Save',
+              _isEdit ? 'Update' : 'Save',
               size: 14,
               color: cs.onBackground,
               weight: FontWeight.bold,

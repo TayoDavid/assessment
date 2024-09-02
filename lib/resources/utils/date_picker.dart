@@ -42,12 +42,13 @@ Future<DateTime?> showMaterialDatePicker(BuildContext context) async {
 
 Future<DateTime?> showCupertinoDatePicker(BuildContext context) async {
   DateTime? pickedDate;
+  final cs = Theme.of(context).colorScheme;
   await showModalBottomSheet(
     context: context,
     builder: (BuildContext builder) {
       return Container(
         height: MediaQuery.of(context).copyWith().size.height / 3,
-        color: Colors.white,
+        color: cs.background,
         child: CupertinoDatePicker(
           mode: CupertinoDatePickerMode.date,
           onDateTimeChanged: (picked) => pickedDate = picked,
