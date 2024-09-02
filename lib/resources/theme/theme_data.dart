@@ -22,28 +22,37 @@ ThemeData lightMode = ThemeData(
     backgroundColor: Colors.transparent,
     foregroundColor: bluePrimary,
     titleTextStyle: TextStyle(color: bluePrimary),
+    surfaceTintColor: Colors.transparent,
   ),
   textTheme: TextTheme(
     displaySmall: headerStyle.copyWith(color: kBlack, fontSize: 20),
     displayMedium: headerStyle.copyWith(color: kBlack, fontSize: 22),
-    displayLarge: headerStyle.copyWith(color: kBlack, fontSize: 36, fontWeight: FontWeight.w800),
-    headlineSmall: headerStyle.copyWith(color: kBlack, fontSize: 16, fontWeight: FontWeight.w800),
-    headlineMedium: headerStyle.copyWith(color: kBlack, fontSize: 20, fontWeight: FontWeight.w800),
-    headlineLarge: headerStyle.copyWith(color: kBlack, fontSize: 24, fontWeight: FontWeight.w800),
+    displayLarge: headerStyle.copyWith(
+        color: kBlack, fontSize: 36, fontWeight: FontWeight.w800),
+    headlineSmall: headerStyle.copyWith(
+        color: kBlack, fontSize: 16, fontWeight: FontWeight.w800),
+    headlineMedium: headerStyle.copyWith(
+        color: kBlack, fontSize: 20, fontWeight: FontWeight.w800),
+    headlineLarge: headerStyle.copyWith(
+        color: kBlack, fontSize: 24, fontWeight: FontWeight.w800),
     labelSmall: textStyle.copyWith(color: greyTitle, fontSize: 14),
     labelMedium: textStyle.copyWith(color: greyTitle, fontSize: 16),
     labelLarge: textStyle.copyWith(color: greyTitle, fontSize: 18),
     bodySmall: textStyle.copyWith(color: kBlack, fontSize: 14),
     bodyMedium: textStyle.copyWith(color: kBlack, fontSize: 16),
     bodyLarge: textStyle.copyWith(color: kBlack, fontSize: 18),
-    titleSmall: textStyle.copyWith(color: greySubtitle, fontSize: 10, fontWeight: FontWeight.normal),
-    titleMedium: textStyle.copyWith(color: greySubtitle, fontSize: 12, fontWeight: FontWeight.w500),
-    titleLarge: textStyle.copyWith(color: greySubtitle, fontSize: 14, fontWeight: FontWeight.w500),
+    titleSmall: textStyle.copyWith(
+        color: greySubtitle, fontSize: 10, fontWeight: FontWeight.normal),
+    titleMedium: textStyle.copyWith(
+        color: greySubtitle, fontSize: 12, fontWeight: FontWeight.w500),
+    titleLarge: textStyle.copyWith(
+        color: greySubtitle, fontSize: 14, fontWeight: FontWeight.w500),
   ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: greyInput,
     contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-    hintStyle: TextStyle(color: kIndicatorColor, fontSize: 14, fontWeight: FontWeight.w500),
+    hintStyle: TextStyle(
+        color: kIndicatorColor, fontSize: 14, fontWeight: FontWeight.w500),
     filled: true,
     border: border,
     enabledBorder: border,
@@ -83,28 +92,37 @@ ThemeData darkMode = ThemeData(
     backgroundColor: Colors.transparent,
     foregroundColor: kWhite,
     titleTextStyle: TextStyle(color: kWhite),
+    surfaceTintColor: Colors.transparent,
   ),
   textTheme: TextTheme(
     displaySmall: headerStyle.copyWith(color: kWhite, fontSize: 20),
     displayMedium: headerStyle.copyWith(color: kWhite, fontSize: 22),
-    displayLarge: headerStyle.copyWith(color: kWhite, fontSize: 36, fontWeight: FontWeight.w800),
-    headlineSmall: headerStyle.copyWith(color: kWhite, fontSize: 16, fontWeight: FontWeight.w800),
-    headlineMedium: headerStyle.copyWith(color: kWhite, fontSize: 20, fontWeight: FontWeight.w800),
-    headlineLarge: headerStyle.copyWith(color: kWhite, fontSize: 24, fontWeight: FontWeight.w800),
+    displayLarge: headerStyle.copyWith(
+        color: kWhite, fontSize: 36, fontWeight: FontWeight.w800),
+    headlineSmall: headerStyle.copyWith(
+        color: kWhite, fontSize: 16, fontWeight: FontWeight.w800),
+    headlineMedium: headerStyle.copyWith(
+        color: kWhite, fontSize: 20, fontWeight: FontWeight.w800),
+    headlineLarge: headerStyle.copyWith(
+        color: kWhite, fontSize: 24, fontWeight: FontWeight.w800),
     labelSmall: textStyle.copyWith(color: greyTitle, fontSize: 14),
     labelMedium: textStyle.copyWith(color: greyTitle, fontSize: 16),
     labelLarge: textStyle.copyWith(color: greyTitle, fontSize: 18),
     bodySmall: textStyle.copyWith(color: kWhite, fontSize: 14),
     bodyMedium: textStyle.copyWith(color: kWhite, fontSize: 16),
     bodyLarge: textStyle.copyWith(color: kWhite, fontSize: 18),
-    titleSmall: textStyle.copyWith(color: greySubtitle, fontSize: 10, fontWeight: FontWeight.normal),
-    titleMedium: textStyle.copyWith(color: greySubtitle, fontSize: 12, fontWeight: FontWeight.w500),
-    titleLarge: textStyle.copyWith(color: greySubtitle, fontSize: 14, fontWeight: FontWeight.w500),
+    titleSmall: textStyle.copyWith(
+        color: greySubtitle, fontSize: 10, fontWeight: FontWeight.normal),
+    titleMedium: textStyle.copyWith(
+        color: greySubtitle, fontSize: 12, fontWeight: FontWeight.w500),
+    titleLarge: textStyle.copyWith(
+        color: greySubtitle, fontSize: 14, fontWeight: FontWeight.w500),
   ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: greyDark,
     contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-    hintStyle: TextStyle(color: kIndicatorColor, fontSize: 14, fontWeight: FontWeight.w500),
+    hintStyle: TextStyle(
+        color: kIndicatorColor, fontSize: 14, fontWeight: FontWeight.w500),
     filled: true,
     border: border,
     enabledBorder: border,

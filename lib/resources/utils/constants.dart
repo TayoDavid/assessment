@@ -9,7 +9,8 @@ const kRadius2 = Radius.circular(24);
 const kBorderRadius = BorderRadius.all(kRadius);
 const kSharpBorderRadius = BorderRadius.all(Radius.circular(40));
 const kBorderRadiusTop = BorderRadius.only(topLeft: kRadius, topRight: kRadius);
-const kBorderRadiusBottom = BorderRadius.only(bottomLeft: kRadius, bottomRight: kRadius);
+const kBorderRadiusBottom =
+    BorderRadius.only(bottomLeft: kRadius, bottomRight: kRadius);
 
 /// The default animation durations.
 const kShortAnimationDuration = Duration(milliseconds: 300);
@@ -38,6 +39,7 @@ const Color pink100 = Color(0xFFF6CFFC);
 const Color redErrorBorder = Color(0xFFF4A4A4);
 const Color redErrorBg = Color(0xFFFCE8E8);
 const Color redText = Color(0xFFEB5757);
+const Color green = Color(0xFF7BC043);
 const Color mildGreenBorder = Color(0xFF8DAA22);
 const Color mildGreenBg = Color(0xFFF7FBEA);
 const Color mildGreenCard = Color(0xFFDFEEAA);

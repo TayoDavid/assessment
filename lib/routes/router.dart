@@ -1,7 +1,8 @@
-
-import 'package:assessment/main.dart';
+import 'package:assessment/ui/add_task.dart';
+import 'package:assessment/ui/home.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
-  TaskManApp.route: (BuildContext context) => TaskManApp(),
+  HomeScreen.route: (context) => HomeScreen(),
+  AddTaskScreen.route: (context) => AddTaskScreen(),
 };
