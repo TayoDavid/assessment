@@ -46,7 +46,7 @@ class FetchRemoteTasksEvent extends TaskEvent {
       }
 
       if (tasks.isNotEmpty) {
-        bloc.repository.batchUpdate(tasks);
+        await bloc.repository.batchUpdate(tasks);
       }
       final newTasks = [...props.tasks, ...tasks];
       final newProps =
@@ -129,7 +129,7 @@ class DeleteTask extends TaskEvent {
               .where((element) => element.id != task.id)
               .toList(),
         );
-        final newProps = props.copyWith(allTasks: tasks);
+        final newProps = props.copyWith(allTasks: tasks, filteredTks: tasks);
         emit(TaskDeletedSuccessfully(newProps));
       } else {
         emit(TaskError(props, "Error deleting task with id: ${task.id}"));
