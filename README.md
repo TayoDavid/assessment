@@ -1,6 +1,6 @@
 # assessment
 
-Task Managment Application
+Task Management Application
 
 ## Overview
 The App is a Task Management Application which allows user to 
@@ -11,6 +11,7 @@ The App is a Task Management Application which allows user to
 
 The Structure of the app is ass follows:
 
+```dart
 Assessment
     - ...
     - lib
@@ -22,7 +23,7 @@ Assessment
         - ui
         main.dart
     - test
-
+```
 ## State Management
 Bloc is used for the app's state management. 
 This allows to separate the business logic of the application from the UI.
