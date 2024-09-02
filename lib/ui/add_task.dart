@@ -24,6 +24,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   bool _showOtherOptions = false;
   bool _setReminder = false;
   bool _isEdit = false;
+  bool _existingTaskInitialized = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -38,8 +39,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   Task? _task;
 
+  late TaskBloc _taskBloc;
+
+  @override
+  void initState() {
+    _taskBloc = context.read<TaskBloc>();
+    super.initState();
+  }
+
   @override
   void didChangeDependencies() {
+    if (_existingTaskInitialized) return;
+    setState(() => _existingTaskInitialized = true);
     final routeSettings = ModalRoute.of(context)?.settings;
     final argument = routeSettings?.arguments as Map<String, dynamic>?;
     debugPrint(argument.toString());
@@ -141,8 +152,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   hint: 'Description',
                   minLines: 7,
                   maxLines: 7,
-                  validator: (value) =>
-                      Validator.validInput(value, "Description"),
                   controller: _descriptionController,
                 ),
                 GestureDetector(
@@ -237,11 +246,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       final description = _descriptionController.text.trim();
       final duration = _durationController.text.trim();
 
-      final localTask = Task(
-        title: title,
-        description: description,
-        completed: 0,
-      );
+      final localTask = _task ?? Task();
+      localTask
+        ..title = title
+        ..description = description
+        ..completed = _isEdit ? _task?.completed : 0;
 
       localTask.duration = int.tryParse(duration);
 
@@ -249,11 +258,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         final taskDate = _selectedDate!.withTimeOfDay(_selectedTime);
         localTask.dateTime = taskDate.toString();
       }
-      final taskBloc = context.read<TaskBloc>();
-      if (_isEdit) {
-      } else {
-        taskBloc.add(AddNewTasksEvent(localTask));
-      }
+      _taskBloc.add(AddNewTasksEvent(localTask, isEdit: _isEdit));
     }
   }
 
@@ -287,7 +292,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   void updateTasks() {
-    final taskBloc = context.read<TaskBloc>();
-    taskBloc.add(FetchTasksEvent());
+    _taskBloc.add(FetchTasksEvent());
   }
 }

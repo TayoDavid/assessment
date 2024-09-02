@@ -4,12 +4,19 @@ sealed class TaskEvent {
   Future<void> handle(TaskBloc bloc, Emitter emit);
 }
 
+class ClearTasks extends TaskEvent {
+  @override
+  Future<void> handle(TaskBloc bloc, Emitter emit) async {
+    emit(TaskBlocInitial());
+  }
+}
+
 class FetchTasksEvent extends TaskEvent {
   @override
   Future<void> handle(TaskBloc bloc, Emitter emit) async {
     final props = bloc.state.stateProps;
     try {
-      emit(LoadingTasks(props));
+      emit(LoadingTasks(props.copyWith(allTasks: [], filteredTks: [])));
       final tasks = await bloc.repository.loadTasksFromDb();
       final newProps = props.copyWith(allTasks: tasks, filteredTks: tasks);
       emit(TasksLoaded(newProps));
@@ -26,15 +33,19 @@ class FetchRemoteTasksEvent extends TaskEvent {
     final props = bloc.state.stateProps;
     try {
       emit(LoadingTasks(props));
-      final tasks = await bloc.repository.fetchRemoteTasks();
       final lastId = await bloc.repository.getLastTask();
+      if (lastId >= 200) {
+        emit(TasksLoaded(props));
+        return;
+      }
 
+      final tasks = await bloc.repository.fetchRemoteTasks();
       if (tasks.last.id == lastId) {
         emit(TasksLoaded(props));
         return;
       }
 
-      if (tasks.isNotEmpty && tasks.last.id != lastId) {
+      if (tasks.isNotEmpty) {
         bloc.repository.batchUpdate(tasks);
       }
       final newTasks = [...props.tasks, ...tasks];
@@ -50,14 +61,21 @@ class FetchRemoteTasksEvent extends TaskEvent {
 
 class AddNewTasksEvent extends TaskEvent {
   final Task task;
-  AddNewTasksEvent(this.task);
+  final bool isEdit;
+  AddNewTasksEvent(this.task, {this.isEdit = false});
 
   @override
   Future<void> handle(TaskBloc bloc, Emitter emit) async {
     final props = bloc.state.stateProps;
     try {
       emit(AddingOrUpdatingTask(props));
-      final response = await bloc.repository.addNewTask(task);
+      bool response;
+      if (isEdit) {
+        response = await bloc.repository.updateTask(task);
+      } else {
+        response = await bloc.repository.addNewTask(task);
+      }
+
       if (response) {
         emit(AddedOrUpdatedTaskSuccessfully(props));
       } else {

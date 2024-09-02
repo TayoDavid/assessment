@@ -33,8 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _taskBloc = context.read<TaskBloc>();
     _taskBloc.add(FetchTasksEvent());
-    // waitAndExec(2000, () => );
-    _fetchRemoteTasks();
+    waitAndExec(2000, () => _fetchRemoteTasks());
     super.initState();
   }
 
@@ -66,14 +65,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 showMessage(context, "Task deleted successfully!");
               }
 
+              if (state is! LoadingTasks) {
+                Loader.dismiss(context);
+              }
+
               if (tasks.isEmpty && state is LoadingTasks) {
                 Loader.show(context);
-              } else {
-                Loader.dismiss(context);
               }
             },
             builder: (context, state) {
-              final allTasks = state.stateProps.filteredTasks;
+              final allTasks = state.stateProps.filteredTasks.reversed.toList();
               String message = 'No ${_selectedTab.title} task';
               if (_selectedDate != null) {
                 message += ' for ${_selectedDate!.partDate}';
@@ -114,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ] else ...[
                     Expanded(
                       child: ListView.separated(
+                        key: UniqueKey(),
                         itemBuilder: (BuildContext context, int index) {
                           final task = allTasks[index];
                           return TaskItem(

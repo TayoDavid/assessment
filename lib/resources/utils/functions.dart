@@ -13,7 +13,7 @@ void showMessage(BuildContext context, String message, {bool error = false}) {
         color: kWhite,
         weight: FontWeight.w500,
       ),
-      backgroundColor: error ? redErrorBg : null,
+      backgroundColor: error ? Colors.red : null,
     ),
   );
 }

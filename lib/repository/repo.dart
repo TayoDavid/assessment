@@ -48,11 +48,9 @@ class TaskRepository {
           .get(Uri.parse('https://jsonplaceholder.typicode.com/todos'));
       final dataList = jsonDecode(response.body) as List;
       if (response.statusCode == 200 && dataList.isNotEmpty) {
-        final lastId = await getLastTask();
         List<Task> tasks = dataList.map((item) {
           return Task.fromJson(
             item as Map<String, dynamic>,
-            offsetIdBy: lastId,
           );
         }).toList();
         return tasks;
