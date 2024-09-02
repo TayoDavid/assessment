@@ -39,7 +39,7 @@ class TaskItem extends StatelessWidget {
               children: [
                 Icon(Icons.check, size: 16).padding(bottom: 4),
                 AppText(
-                  completed ? 'InComplete' : 'Completed',
+                  completed ? 'Incomplete' : 'Completed',
                   size: 13,
                   weight: FontWeight.w500,
                   color: kWhite,
